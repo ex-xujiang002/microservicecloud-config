@@ -1,0 +1,15 @@
+﻿spring:
+  profiles:
+    active:
+      -dev
+---
+spring:
+   profiles: dev   # 开发环境
+   application: 
+     name: microservicecloud-config-pingan-dev
+---
+spring:
+   profiles: test   # 测试环境
+   application:
+     name: microservicecloud-config-pingan-test
+# 请以UTF-8的形式保存，在github才能显示中文。
