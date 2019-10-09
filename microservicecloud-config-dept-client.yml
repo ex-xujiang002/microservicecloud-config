@@ -1,0 +1,118 @@
+spring:
+  profiles: 
+    active:
+    - dev
+---
+server:
+  port: 8001
+
+spring:
+  profiles: dev 
+  application:
+    name: microservicecloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB01
+    username: root
+    password: 123
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+      max-total: 5
+      max-wait-millis: 200
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.pingan.springcloud.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka  # 单机版本
+      defaultZone: http://eureka7001.com:7001/eureka
+      # 集群配制
+  instance: 
+    instance-id: dept-8001 #此处是修改Eureka显示的实例名字（服务名称）
+    prefer-ip-address: true #可以显示Ip
+    
+info:
+   app.name: pingan-microservicecloud-springcloudconfig01
+   company.name: www.pingan.com
+   build.artifactId: $project.artifactId$
+   build.version: $project.version$
+---
+server:
+  port: 8001
+  
+spring:
+  profiles: test
+  application: 
+    name: microservicecloud-config-eureka-client
+
+eureka:
+  instance:
+    hostname: eureka7001.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+       defaultZone: http://eureka7001.com:7001/eureka/
+---
+server:
+  port: 8001
+
+spring:
+  profiles: dev 
+  application:
+    name: microservicecloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB01
+    username: root
+    password: 123
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+      max-total: 5
+      max-wait-millis: 200
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.pingan.springcloud.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka  # 单机版本
+      defaultZone: http://eureka7001.com:7001/eureka
+      # 集群配制
+  instance: 
+    instance-id: dept-8001 #此处是修改Eureka显示的实例名字（服务名称）
+    prefer-ip-address: true #可以显示Ip
+    
+info:
+   app.name: pingan-microservicecloud-springcloudconfig01
+   company.name: www.pingan.com
+   build.artifactId: $project.artifactId$
+   build.version: $project.version$
+---
+server:
+  port: 8001
+  
+spring:
+  profiles: test
+  application: 
+    name: microservicecloud-config-eureka-client
+
+eureka:
+  instance:
+    hostname: eureka7001.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+       defaultZone: http://eureka7001.com:7001/eureka/
